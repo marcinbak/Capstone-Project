@@ -1,0 +1,4 @@
+ext {
+  daggerVersion = "2.10"
+  firebaseVersion = "10.2.0"
+}
