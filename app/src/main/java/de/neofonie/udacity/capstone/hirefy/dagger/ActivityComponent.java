@@ -1,7 +1,7 @@
 package de.neofonie.udacity.capstone.hirefy.dagger;
 
 import dagger.Subcomponent;
-import de.neofonie.udacity.capstone.hirefy.MainActivity;
+import de.neofonie.udacity.capstone.hirefy.ui.SplashActivity;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.dagger.scope.ActivityScope;
 
@@ -16,6 +16,6 @@ public interface ActivityComponent {
 
   void inject(BaseActivity activity);
 
-  void inject(MainActivity activity);
+  void inject(SplashActivity activity);
 
 }

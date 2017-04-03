@@ -1,4 +1,6 @@
 ext {
   daggerVersion = "2.10"
   firebaseVersion = "10.2.0"
+  rxVersion = "2.0.8"
+  rxAndroidVersion = "2.0.1"
 }
