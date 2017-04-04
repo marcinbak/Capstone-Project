@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="login_button_padding_left">4dp</dimen>
+  <dimen name="login_button_padding_right">4dp</dimen>
+</resources>

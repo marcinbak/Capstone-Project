@@ -3,4 +3,5 @@ ext {
   firebaseVersion = "10.2.0"
   rxVersion = "2.0.8"
   rxAndroidVersion = "2.0.1"
+  butterknifeVersion = "8.5.1"
 }

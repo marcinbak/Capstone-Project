@@ -3,4 +3,7 @@
   <string name="splash_description">Hirefy splash screen</string>
   <string name="login_label">Login</string>
   <string name="candidates_label">Candidates</string>
+  <string name="login_success_msg">You have been successfully logged in.</string>
+  <string name="login_failed_msg">Login failed</string>
+  <string name="login_sign_in">Login with Google+</string>
 </resources>

@@ -13,10 +13,25 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
+
+  signingConfigs {
+    debugkey {
+      storeFile file('../hirefy-debug.keystore')
+      storePassword "t6KKJDHHFsg2wQfWrWDl"
+      keyPassword "t6KKJDHHFsg2wQfWrWDl"
+      keyAlias "hirefy_debug"
+    }
+  }
+
   buildTypes {
+    debug {
+      signingConfig signingConfigs.debugkey
+    }
+
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.debugkey
     }
   }
 }
@@ -31,9 +46,13 @@ dependencies {
   compile "com.google.firebase:firebase-crash:$firebaseVersion"
   compile "com.google.firebase:firebase-auth:$firebaseVersion"
   compile "com.google.firebase:firebase-database:$firebaseVersion"
+  compile "com.google.android.gms:play-services-auth:$firebaseVersion"
 
   compile "com.google.dagger:dagger:$daggerVersion"
   annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+  compile "com.jakewharton:butterknife:$butterknifeVersion"
+  annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
   compile "io.reactivex.rxjava2:rxjava:$rxVersion"
   compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"

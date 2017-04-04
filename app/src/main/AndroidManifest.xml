@@ -17,9 +17,11 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".ui.LoginActivity"
+    <activity
+        android:name=".ui.LoginActivity"
         android:label="@string/login_label"/>
-    <activity android:name=".ui.CandidatesActivity"
+    <activity
+        android:name=".ui.CandidatesActivity"
         android:label="@string/candidates_label"/>
   </application>
 

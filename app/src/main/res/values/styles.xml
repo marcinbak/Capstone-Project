@@ -8,4 +8,12 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+  <style name="GButtonStyle">
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:paddingLeft">14dp</item>
+    <item name="android:paddingRight">14dp</item>
+    <item name="android:background">@drawable/button_background</item>
+  </style>
+
 </resources>
