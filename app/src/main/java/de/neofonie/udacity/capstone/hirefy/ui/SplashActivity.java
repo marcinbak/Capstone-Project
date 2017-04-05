@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseUser;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesActivity;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

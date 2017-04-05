@@ -20,6 +20,6 @@
       android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
       android:background="@drawable/button_background_gplus"
       android:text="@string/login_sign_in"
-      android:textColor="@android:color/white"/>
+      android:textColor="@color/gplus_color"/>
 
 </RelativeLayout>

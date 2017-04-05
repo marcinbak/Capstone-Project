@@ -2,6 +2,7 @@ package de.neofonie.udacity.capstone.hirefy.base;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import butterknife.Unbinder;
 import de.neofonie.udacity.capstone.hirefy.dagger.ActivityComponent;
 
 /**
@@ -9,6 +10,8 @@ import de.neofonie.udacity.capstone.hirefy.dagger.ActivityComponent;
  */
 
 public abstract class BaseFragment extends Fragment {
+
+  protected Unbinder mUnbinder;
 
   @Override
   public void onAttach(Context context) {
@@ -24,5 +27,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     throw new IllegalArgumentException("This fragment should be attached to activity extending BaseActivity for Dagger2 to work correctly.");
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    if (mUnbinder != null) {
+      mUnbinder.unbind();
+    }
+
   }
 }

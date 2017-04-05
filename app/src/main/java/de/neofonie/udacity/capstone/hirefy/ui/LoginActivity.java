@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesActivity;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.Disposables;
 import io.reactivex.functions.Action;

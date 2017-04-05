@@ -82,4 +82,8 @@ public class AuthManager {
       }
     });
   }
+
+  public void logout() {
+    mFirebaseAuth.signOut();
+  }
 }
