@@ -1,8 +1,11 @@
 package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 
+import org.parceler.Parcel;
+
 /**
  * Created by marcinbak on 05/04/2017.
  */
+@Parcel
 public class FbCandidate {
 
   String uuid;

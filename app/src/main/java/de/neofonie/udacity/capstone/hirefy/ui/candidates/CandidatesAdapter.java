@@ -9,7 +9,8 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
  */
 public class CandidatesAdapter extends FirebaseRecyclerAdapter<FbCandidate, FbCandidateVH> {
 
-  private boolean isTablet = false;
+  private boolean isTablet         = false;
+  private int     selectedPosition = 0;
 
   /**
    * @param modelLayout This is the layout used to represent a single item in the list.
@@ -24,10 +25,19 @@ public class CandidatesAdapter extends FirebaseRecyclerAdapter<FbCandidate, FbCa
 
   @Override
   protected void populateViewHolder(FbCandidateVH viewHolder, FbCandidate model, int position) {
-    viewHolder.mCandidateNameTv.setText(model.getFirstName() + " " + model.getLastName());
-    viewHolder.mPositionTv.setText(model.getPosition());
-    if (position == 0 && !isTablet) {
-      // TODO show extra button to go to interview??
+    viewHolder.setModel(model, !isTablet && position == 0, isTablet && position == selectedPosition);
+  }
+
+  public void setTablet(boolean tablet) {
+    isTablet = tablet;
+  }
+
+  public void setSelectedPosition(int selectedPosition) {
+    if (isTablet) {
+      int oldSelectedPosition = this.selectedPosition;
+      this.selectedPosition = selectedPosition;
+      notifyItemChanged(oldSelectedPosition);
+      notifyItemChanged(this.selectedPosition);
     }
   }
 }

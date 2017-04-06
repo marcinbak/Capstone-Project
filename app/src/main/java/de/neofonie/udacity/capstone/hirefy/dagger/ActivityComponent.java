@@ -5,6 +5,7 @@ import de.neofonie.udacity.capstone.hirefy.dagger.scope.ActivityScope;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.SplashActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidateDetailFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidateDetailsActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesListFragment;
 
@@ -28,4 +29,6 @@ public interface ActivityComponent {
   void inject(CandidatesListFragment candidatesListFragment);
 
   void inject(CandidatesActivity candidatesActivity);
+
+  void inject(CandidateDetailsActivity candidateDetailsActivity);
 }

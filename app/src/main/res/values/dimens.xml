@@ -2,5 +2,7 @@
 <resources>
   <dimen name="login_button_padding_left">4dp</dimen>
   <dimen name="login_button_padding_right">4dp</dimen>
-  <dimen name="master_detail_width">300dp</dimen>
+  <dimen name="master_detail_width">350dp</dimen>
+
+  <dimen name="shadow_size">2dp</dimen>
 </resources>

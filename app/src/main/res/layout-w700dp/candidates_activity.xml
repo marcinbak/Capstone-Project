@@ -3,18 +3,17 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-  <fragment
+  <FrameLayout
       android:id="@+id/candidates_frag"
-      android:layout_width="@dimen/master_detail_width"
       android:layout_height="match_parent"
-      android:layout_gravity="start"
-      class="de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesListFragment"/>
+      android:layout_width="@dimen/master_detail_width"
+      android:paddingEnd="@dimen/shadow_size"
+      android:background="@drawable/shadow_drawable"/>
 
-  <fragment
-      android:id="@+id/candidate_details"
+  <FrameLayout
+      android:id="@+id/candidate_details_frag"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginStart="@dimen/master_detail_width"
-      class="de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidateDetailFragment"/>
+      android:layout_marginStart="@dimen/master_detail_width"/>
 
 </FrameLayout>

@@ -10,18 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
+import com.hannesdorfmann.fragmentargs.FragmentArgs;
+import com.hannesdorfmann.fragmentargs.annotation.Arg;
+import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseFragment;
 import de.neofonie.udacity.capstone.hirefy.dagger.ActivityComponent;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
+import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 
 import javax.inject.Inject;
 
 /**
  * Created by marcinbak on 05/04/2017.
  */
+@FragmentWithArgs
 public class CandidatesListFragment extends BaseFragment {
 
   @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
@@ -29,9 +32,17 @@ public class CandidatesListFragment extends BaseFragment {
   @Inject CandidatesManager mCandidatesManager;
   private CandidatesAdapter mAdapter;
 
+  @Arg boolean isTablet;
+
   @Override
   protected void inject(ActivityComponent component) {
     component.inject(this);
+  }
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    FragmentArgs.inject(this);
   }
 
   @Nullable
@@ -45,6 +56,7 @@ public class CandidatesListFragment extends BaseFragment {
     mRecyclerView.addItemDecoration(dividerItemDecoration);
 
     mAdapter = new CandidatesAdapter(R.layout.candidate_li, mCandidatesManager.getCandidatesList());
+    mAdapter.setTablet(true);
     mRecyclerView.setLayoutManager(layoutManager);
     mRecyclerView.setAdapter(mAdapter);
 
@@ -55,5 +67,9 @@ public class CandidatesListFragment extends BaseFragment {
   public void onDestroyView() {
     super.onDestroyView();
     mAdapter.cleanup();
+  }
+
+  public void setSelectedCandidate(FbCandidate candidate, int index) {
+    mAdapter.setSelectedPosition(index);
   }
 }
