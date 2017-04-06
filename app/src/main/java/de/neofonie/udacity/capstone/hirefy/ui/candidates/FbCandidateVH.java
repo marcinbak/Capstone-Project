@@ -12,7 +12,6 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 /**
  * Created by marcinbak on 05/04/2017.
  */
-
 public class FbCandidateVH extends RecyclerView.ViewHolder {
 
   @BindView(R.id.candidate_name_tv) TextView    mCandidateNameTv;

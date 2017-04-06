@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
@@ -67,6 +68,11 @@ public class CandidatesListFragment extends BaseFragment {
   public void onDestroyView() {
     super.onDestroyView();
     mAdapter.cleanup();
+  }
+
+  @OnClick(R.id.add_candidate_fab)
+  void onAddNewCandidateClick() {
+    // TODO create new candidate
   }
 
   public void setSelectedCandidate(FbCandidate candidate, int index) {

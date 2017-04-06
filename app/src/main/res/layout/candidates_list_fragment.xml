@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
   <android.support.v7.widget.RecyclerView
       android:id="@+id/recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 
-</FrameLayout>
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/add_candidate_fab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/fab_margin"
+      android:layout_marginBottom="@dimen/fab_margin"
+      android:src="@drawable/plus"
+      app:layout_behavior="de.neofonie.udacity.capstone.hirefy.ui.widgets.HidingFabBehaviour"
+      android:layout_gravity="bottom|end"/>
+</android.support.design.widget.CoordinatorLayout>
