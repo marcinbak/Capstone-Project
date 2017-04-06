@@ -42,6 +42,7 @@ public class FbCandidateVH extends RecyclerView.ViewHolder {
     if (isFirst) {
       // TODO show extra button to go to interview??
     }
+
     mRootView.setBackgroundResource(selected ? R.color.selected_item_background : R.drawable.candidate_li_background);
   }
 }

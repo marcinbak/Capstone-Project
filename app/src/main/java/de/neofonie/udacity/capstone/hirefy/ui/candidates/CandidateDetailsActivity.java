@@ -35,6 +35,7 @@ public class CandidateDetailsActivity extends BaseActivity {
     ButterKnife.bind(this);
 
     FbCandidate candidate = Parcels.unwrap(getIntent().getParcelableExtra(CANDIDATE_EXTRA));
+    setTitle(candidate.getFirstName() + " " + candidate.getLastName());
 
     int containerId = mContainer.getId();
     if (containerId != 0 && getSupportFragmentManager().findFragmentById(containerId) == null) {

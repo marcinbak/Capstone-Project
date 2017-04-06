@@ -56,7 +56,7 @@ public class CandidatesListFragment extends BaseFragment {
     mRecyclerView.addItemDecoration(dividerItemDecoration);
 
     mAdapter = new CandidatesAdapter(R.layout.candidate_li, mCandidatesManager.getCandidatesList());
-    mAdapter.setTablet(true);
+    mAdapter.setTablet(isTablet);
     mRecyclerView.setLayoutManager(layoutManager);
     mRecyclerView.setAdapter(mAdapter);
 

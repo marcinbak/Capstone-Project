@@ -23,6 +23,9 @@
     <activity
         android:name=".ui.candidates.CandidatesActivity"
         android:label="@string/candidates_label"/>
+    <activity
+        android:name=".ui.candidates.CandidateDetailsActivity"
+        android:parentActivityName=".ui.candidates.CandidatesActivity"/>
   </application>
 
 </manifest>
