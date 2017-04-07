@@ -1,6 +1,7 @@
 package de.neofonie.udacity.capstone.hirefy.ui.candidates;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 
@@ -21,6 +22,13 @@ public class CandidatesAdapter extends FirebaseRecyclerAdapter<FbCandidate, FbCa
    */
   public CandidatesAdapter(int modelLayout, Query ref) {
     super(FbCandidate.class, modelLayout, FbCandidateVH.class, ref);
+  }
+
+  @Override
+  protected FbCandidate parseSnapshot(DataSnapshot snapshot) {
+    FbCandidate candidate = super.parseSnapshot(snapshot);
+    candidate.setKey(snapshot.getKey());
+    return candidate;
   }
 
   @Override

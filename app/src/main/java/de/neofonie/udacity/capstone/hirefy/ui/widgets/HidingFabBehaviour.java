@@ -5,13 +5,11 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
  * Created by marcinbak on 06/04/2017.
  */
-
 public class HidingFabBehaviour extends CoordinatorLayout.Behavior<FloatingActionButton> {
 
   private final static String TAG = HidingFabBehaviour.class.getSimpleName();
@@ -32,7 +30,6 @@ public class HidingFabBehaviour extends CoordinatorLayout.Behavior<FloatingActio
                              final View target, final int dxConsumed, final int dyConsumed,
                              final int dxUnconsumed, final int dyUnconsumed) {
     super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
-    Log.d(TAG, "consumed(" + dxConsumed + "," + dyConsumed + "),\tunconsumed(" + dxUnconsumed + "," + dyUnconsumed + ")");
     if (dyConsumed > 0 && child.getVisibility() == View.VISIBLE) {
       child.hide(new FloatingActionButton.OnVisibilityChangedListener() {
         @Override

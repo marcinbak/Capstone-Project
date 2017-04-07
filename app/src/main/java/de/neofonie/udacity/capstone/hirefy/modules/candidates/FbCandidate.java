@@ -8,7 +8,7 @@ import org.parceler.Parcel;
 @Parcel
 public class FbCandidate {
 
-  String uuid;
+  String key;
   String firstName;
   String lastName;
   String position;
@@ -17,7 +17,7 @@ public class FbCandidate {
   //String linkedInProfile;
 
   public String getUuid() {
-    return uuid;
+    return key;
   }
 
   public String getFirstName() {
@@ -30,5 +30,9 @@ public class FbCandidate {
 
   public String getPosition() {
     return position;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
   }
 }
