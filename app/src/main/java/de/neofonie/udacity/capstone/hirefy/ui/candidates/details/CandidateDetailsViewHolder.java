@@ -3,6 +3,8 @@ package de.neofonie.udacity.capstone.hirefy.ui.candidates.details;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidateDetails;
@@ -27,6 +29,8 @@ public class CandidateDetailsViewHolder extends ViewHolder<CandidateDetails> {
     }
   }
 
+  @BindView(R.id.position_tv) TextView mPositionTv;
+
   private CandidateDetailsViewHolder(View itemView) {
     super(itemView);
     ButterKnife.bind(this, itemView);
@@ -34,5 +38,6 @@ public class CandidateDetailsViewHolder extends ViewHolder<CandidateDetails> {
 
   @Override
   public void bind(CandidateDetails model) {
+    mPositionTv.setText(model.getPosition());
   }
 }

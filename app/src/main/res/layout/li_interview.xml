@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content"
+              android:paddingTop="@dimen/universal_padding_small">
+
+  <TextView
+      android:id="@+id/title_tv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+      tools:text="1st interview, HR"/>
+
+  <TextView
+      android:id="@+id/planned_date_tv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="@dimen/universal_padding_small"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      tools:text="20/03/2015 12:00"/>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_marginTop="@dimen/universal_padding_small"
+      android:background="@drawable/divider"/>
 
 </LinearLayout>

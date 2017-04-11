@@ -6,11 +6,16 @@ package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 public class Interview {
 
   String key;
+  String title;
   String plannedDate;
   String questionSetUid;
   String resultsUid;
 
   public Interview() {
+  }
+
+  public String getTitle() {
+    return title;
   }
 
   public String getKey() {

@@ -118,7 +118,7 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
       data.addAll(details.getComments());
     }
 
-    data.add(new AddComment());
+    data.add(new AddComment(details));
 
     mAdapter.setData(data);
   }

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/universal_padding_small"
+                android:paddingBottom="@dimen/universal_padding_small">
 
-</LinearLayout>
+  <Button
+      android:id="@+id/resume_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:text="@string/resume_label"/>
+
+  <TextView
+      android:id="@+id/position_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignBaseline="@+id/resume_btn"
+      android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+      tools:text="Android Developer"/>
+
+</RelativeLayout>

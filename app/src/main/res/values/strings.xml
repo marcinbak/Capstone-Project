@@ -9,4 +9,7 @@
   <string name="logout_label">Logout</string>
   <string name="interviews_label">Interviews</string>
   <string name="comments_label">Comments</string>
+  <string name="resume_label">Resume</string>
+  <string name="send">Send</string>
+  <string name="add_comment_hint">Add comment</string>
 </resources>

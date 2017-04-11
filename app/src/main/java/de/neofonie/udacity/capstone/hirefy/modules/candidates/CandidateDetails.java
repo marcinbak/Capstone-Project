@@ -43,9 +43,7 @@ public class CandidateDetails {
         case "comments":
           comments = new ArrayList<>((int) s.getChildrenCount());
           for (DataSnapshot ss : s.getChildren()) {
-            Comment comment = ss.getValue(Comment.class);
-            comment.key = ss.getKey();
-            comments.add(comment);
+            comments.add(ss.getValue(Comment.class));
           }
           break;
         case "interviews":

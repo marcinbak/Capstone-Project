@@ -12,18 +12,20 @@ import butterknife.ButterKnife;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
+import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragment;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragmentBuilder;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailsActivity;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CommentSender;
 
 import javax.inject.Inject;
 
 /**
  * Created by marcinbak on 03/04/2017.
  */
-public class CandidatesActivity extends BaseActivity implements CandidateSelectedListener {
+public class CandidatesActivity extends BaseActivity implements CandidateSelectedListener, CommentSender {
 
   public static void start(Activity context) {
     Intent i = new Intent(context, CandidatesActivity.class);
@@ -36,7 +38,8 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
   @BindView(R.id.candidate_details_frag)
   View mCandidateDetailsContainer;
 
-  @Inject AuthManager mAuthManager;
+  @Inject AuthManager       mAuthManager;
+  @Inject CandidatesManager mCandidatesManager;
 
   private boolean isTablet;
 
@@ -97,5 +100,10 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
     } else {
       CandidateDetailsActivity.start(this, candidate);
     }
+  }
+
+  @Override
+  public void sendComment(String uuid, String comment) {
+    mCandidatesManager.sendComment(uuid, comment);
   }
 }

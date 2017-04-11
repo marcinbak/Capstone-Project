@@ -6,4 +6,8 @@
 
   <dimen name="shadow_size">2dp</dimen>
   <dimen name="fab_margin">12dp</dimen>
+
+  <dimen name="universal_padding">8dp</dimen>
+  <dimen name="universal_padding_small">4dp</dimen>
+
 </resources>

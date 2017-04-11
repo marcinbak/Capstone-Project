@@ -1,5 +1,6 @@
 package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import de.neofonie.udacity.capstone.hirefy.dagger.scope.ApplicationScope;
@@ -42,4 +43,14 @@ public class CandidatesManager {
     mDb.getReference().updateChildren(map);
   }
 
+  public void sendComment(String uuid, String comment) {
+    String refStr = CANDIDATE_DETAILS_REF + "/" + uuid + "/comments";
+    Comment commentObj = new Comment();
+    commentObj.setAuthor(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+    commentObj.setText(comment);
+
+    DatabaseReference ref = mDb.getReference(refStr);
+    String key = ref.push().getKey();
+    ref.child(key).setValue(commentObj);
+  }
 }

@@ -9,13 +9,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
+import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import org.parceler.Parcels;
+
+import javax.inject.Inject;
 
 /**
  * Created by marcinbak on 06/04/2017.
  */
-public class CandidateDetailsActivity extends BaseActivity {
+public class CandidateDetailsActivity extends BaseActivity implements CommentSender {
 
   private final static String CANDIDATE_EXTRA = "CANDIDATE_EXTRA";
 
@@ -26,6 +29,8 @@ public class CandidateDetailsActivity extends BaseActivity {
   }
 
   @BindView(R.id.container) View mContainer;
+
+  @Inject CandidatesManager mCandidatesManager;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,5 +48,10 @@ public class CandidateDetailsActivity extends BaseActivity {
           .add(containerId, new CandidateDetailFragmentBuilder().candidate(candidate).build())
           .commit();
     }
+  }
+
+  @Override
+  public void sendComment(String uuid, String comment) {
+    mCandidatesManager.sendComment(uuid, comment);
   }
 }
