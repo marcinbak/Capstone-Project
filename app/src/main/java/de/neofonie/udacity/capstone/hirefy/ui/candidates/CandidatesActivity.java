@@ -14,6 +14,9 @@ import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragmentBuilder;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailsActivity;
 
 import javax.inject.Inject;
 

@@ -4,8 +4,8 @@ import dagger.Subcomponent;
 import de.neofonie.udacity.capstone.hirefy.dagger.scope.ActivityScope;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.SplashActivity;
-import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidateDetailFragment;
-import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidateDetailsActivity;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailsActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesListFragment;
 

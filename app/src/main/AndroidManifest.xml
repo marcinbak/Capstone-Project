@@ -24,7 +24,7 @@
         android:name=".ui.candidates.CandidatesActivity"
         android:label="@string/candidates_label"/>
     <activity
-        android:name=".ui.candidates.CandidateDetailsActivity"
+        android:name=".ui.candidates.details.CandidateDetailsActivity"
         android:parentActivityName=".ui.candidates.CandidatesActivity"/>
   </application>
 

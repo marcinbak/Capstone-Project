@@ -1,4 +1,4 @@
-package de.neofonie.udacity.capstone.hirefy.ui.candidates;
+package de.neofonie.udacity.capstone.hirefy.ui.candidates.details;
 
 import android.app.Activity;
 import android.content.Intent;
