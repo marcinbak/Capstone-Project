@@ -7,4 +7,6 @@
   <string name="login_failed_msg">Login failed</string>
   <string name="login_sign_in">Login with Google+</string>
   <string name="logout_label">Logout</string>
+  <string name="interviews_label">Interviews</string>
+  <string name="comments_label">Comments</string>
 </resources>

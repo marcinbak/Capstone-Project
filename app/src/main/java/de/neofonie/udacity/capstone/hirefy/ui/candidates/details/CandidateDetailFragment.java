@@ -27,6 +27,8 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.ui.widgets.CustomRecyclerAdapter;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by marcinbak on 05/04/2017.
@@ -100,10 +102,25 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
   @Override
   public void onDataChange(DataSnapshot dataSnapshot) {
-    CandidateDetails details = dataSnapshot.getValue(CandidateDetails.class);
+    CandidateDetails details = new CandidateDetails(dataSnapshot);
 
-    // todo build data list
-//    mAdapter.
+    List<Object> data = new ArrayList<>(details.getSize() + 4); // interviews + details + 2xlabel + add comment + details
+
+    data.add(details);
+
+    if (details.hasInterviews()) {
+      data.add(getString(R.string.interviews_label));
+      data.addAll(details.getInterviews());
+    }
+
+    data.add(getString(R.string.comments_label));
+    if (details.hasComments()) {
+      data.addAll(details.getComments());
+    }
+
+    data.add(new AddComment());
+
+    mAdapter.setData(data);
   }
 
   @Override

@@ -1,5 +1,9 @@
 package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 
+import com.google.firebase.database.DataSnapshot;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,6 +19,48 @@ public class CandidateDetails {
   List<Comment>   comments;
   List<Interview> interviews;
   //String linkedInProfile;
+
+  public CandidateDetails() {
+  }
+
+  public CandidateDetails(DataSnapshot snapshot) {
+    key = snapshot.getKey();
+
+    for (DataSnapshot s : snapshot.getChildren()) {
+      switch (s.getKey()) {
+        case "firstName":
+          firstName = s.getValue(String.class);
+          break;
+        case "lastName":
+          lastName = s.getValue(String.class);
+          break;
+        case "position":
+          position = s.getValue(String.class);
+          break;
+        case "createTime":
+          createTime = s.getValue(String.class);
+          break;
+        case "comments":
+          comments = new ArrayList<>((int) s.getChildrenCount());
+          for (DataSnapshot ss : s.getChildren()) {
+            Comment comment = ss.getValue(Comment.class);
+            comment.key = ss.getKey();
+            comments.add(comment);
+          }
+          break;
+        case "interviews":
+          interviews = new ArrayList<>((int) s.getChildrenCount());
+          for (DataSnapshot ss : s.getChildren()) {
+            Interview interview = ss.getValue(Interview.class);
+            interview.key = ss.getKey();
+            interviews.add(interview);
+          }
+          break;
+      }
+    }
+
+
+  }
 
   public String getUuid() {
     return key;
@@ -40,11 +86,42 @@ public class CandidateDetails {
     return createTime;
   }
 
-  public List<Comment> getComments() {
+  public Collection<Comment> getComments() {
     return comments;
   }
 
-  public List<Interview> getInterviews() {
+  public Collection<Interview> getInterviews() {
     return interviews;
+  }
+
+  /**
+   * Returns sum of comments and interviews lists sizes.
+   *
+   * @return
+   */
+  public int getSize() {
+    return getCommentsSize() + getInterviewsSize();
+  }
+
+  public int getCommentsSize() {
+    if (comments != null) {
+      return comments.size();
+    }
+    return 0;
+  }
+
+  public int getInterviewsSize() {
+    if (interviews != null) {
+      return interviews.size();
+    }
+    return 0;
+  }
+
+  public boolean hasInterviews() {
+    return getInterviewsSize() > 0;
+  }
+
+  public boolean hasComments() {
+    return getCommentsSize() > 0;
   }
 }

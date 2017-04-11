@@ -6,7 +6,7 @@ package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 public class Comment {
   String text;
   String date;
-  String uid;
+  String key;
 
   public Comment() {
   }
@@ -20,6 +20,6 @@ public class Comment {
   }
 
   public String getUid() {
-    return uid;
+    return key;
   }
 }
