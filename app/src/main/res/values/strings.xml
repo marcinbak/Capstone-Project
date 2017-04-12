@@ -12,4 +12,8 @@
   <string name="resume_label">Resume</string>
   <string name="send">Send</string>
   <string name="add_comment_hint">Add comment</string>
+  <string name="firstname_hint">First name</string>
+  <string name="lastname_hint">Last name</string>
+  <string name="position_hint">Position</string>
+  <string name="submit_label">Submit</string>
 </resources>

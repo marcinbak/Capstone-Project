@@ -19,4 +19,5 @@
       android:src="@drawable/plus"
       app:layout_behavior="de.neofonie.udacity.capstone.hirefy.ui.widgets.HidingFabBehaviour"
       android:layout_gravity="bottom|end"/>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -2,6 +2,7 @@ package de.neofonie.udacity.capstone.hirefy.ui.candidates;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import de.neofonie.udacity.capstone.hirefy.base.BaseFragment;
 import de.neofonie.udacity.capstone.hirefy.dagger.ActivityComponent;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddCandidateFragmentBuilder;
 
 import javax.inject.Inject;
 
@@ -72,7 +74,18 @@ public class CandidatesListFragment extends BaseFragment {
 
   @OnClick(R.id.add_candidate_fab)
   void onAddNewCandidateClick() {
-    // TODO create new candidate
+    DialogFragment f = new AddCandidateFragmentBuilder().build();
+    String tag = f.getClass().getSimpleName();
+    if (isTablet) {
+      f.show(getActivity().getSupportFragmentManager(), tag);
+    } else {
+      getActivity().getSupportFragmentManager()
+          .beginTransaction()
+          .setCustomAnimations(R.anim.right_in, R.anim.right_out, R.anim.right_in, R.anim.right_out)
+          .add(R.id.candidates_frag, f, tag)
+          .addToBackStack(tag)
+          .commit();
+    }
   }
 
   public void setSelectedCandidate(FbCandidate candidate, int index) {

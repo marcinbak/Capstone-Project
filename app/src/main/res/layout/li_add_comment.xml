@@ -11,13 +11,13 @@
       android:layout_height="wrap_content"
       android:layout_weight="1"
       android:inputType="textCapSentences"
+      android:hint="@string/add_comment_hint"
       android:imeOptions="actionSend"/>
 
   <Button
       android:id="@+id/send_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:hint="@string/add_comment_hint"
       android:text="@string/send"/>
 
 </LinearLayout>
