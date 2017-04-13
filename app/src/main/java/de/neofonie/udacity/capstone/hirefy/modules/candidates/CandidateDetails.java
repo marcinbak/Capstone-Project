@@ -17,6 +17,7 @@ public class CandidateDetails {
   String          lastName;
   String          position;
   String          createTime;
+  String          resume;
   List<Comment>   comments;
   List<Interview> interviews;
   //String linkedInProfile;
@@ -58,10 +59,10 @@ public class CandidateDetails {
         case "dateUnix":
           createTime = DateUtils.format(s.getValue(Long.class));
           break;
+        case "resume":
+          resume = s.getValue(String.class);
       }
     }
-
-
   }
 
   public String getUuid() {
@@ -125,5 +126,9 @@ public class CandidateDetails {
 
   public boolean hasComments() {
     return getCommentsSize() > 0;
+  }
+
+  public String getResume() {
+    return resume;
   }
 }

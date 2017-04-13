@@ -3,18 +3,24 @@ package de.neofonie.udacity.capstone.hirefy.ui.candidates;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.drive.Drive;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
+import de.neofonie.udacity.capstone.hirefy.ui.PlayServicesProvider;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragment;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragmentBuilder;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailsActivity;
@@ -25,7 +31,8 @@ import javax.inject.Inject;
 /**
  * Created by marcinbak on 03/04/2017.
  */
-public class CandidatesActivity extends BaseActivity implements CandidateSelectedListener, CommentSender {
+public class CandidatesActivity extends BaseActivity implements CandidateSelectedListener, CommentSender,
+    GoogleApiClient.OnConnectionFailedListener, PlayServicesProvider {
 
   public static void start(Activity context) {
     Intent i = new Intent(context, CandidatesActivity.class);
@@ -41,15 +48,18 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
   @Inject AuthManager       mAuthManager;
   @Inject CandidatesManager mCandidatesManager;
 
-  private boolean isTablet;
+  private GoogleApiClient mGoogleApiClient;
+  private boolean         isTablet;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.candidates_activity);
-    ButterKnife.bind(this);
     getComponent().inject(this);
+    ButterKnife.bind(this);
     isTablet = mCandidateDetailsContainer != null;
+
+    initPlayServices();
 
     int listContainerId = R.id.candidates_frag;
     if (getSupportFragmentManager().findFragmentById(listContainerId) == null) {
@@ -64,7 +74,26 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
           .add(detailsContainerId, new CandidateDetailFragmentBuilder().build())
           .commit();
     }
+  }
 
+  private void initPlayServices() {
+    mGoogleApiClient = new GoogleApiClient.Builder(this)
+        .enableAutoManage(this, this)
+        .addApi(Drive.API)
+        .addScope(Drive.SCOPE_FILE)
+        .build();
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    mGoogleApiClient.connect();
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    mGoogleApiClient.disconnect();
   }
 
   @Override
@@ -105,5 +134,14 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
   @Override
   public void sendComment(String uuid, String comment) {
     mCandidatesManager.sendComment(uuid, comment);
+  }
+
+  @Override
+  public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    Toast.makeText(this, "Failed to connect to play services.", Toast.LENGTH_SHORT).show();
+  }
+
+  public GoogleApiClient getGoogleApiClient() {
+    return mGoogleApiClient;
   }
 }

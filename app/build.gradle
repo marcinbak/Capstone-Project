@@ -50,6 +50,7 @@ dependencies {
   compile "com.google.firebase:firebase-auth:$firebaseVersion"
   compile "com.google.firebase:firebase-database:$firebaseVersion"
   compile "com.google.android.gms:play-services-auth:$firebaseVersion"
+  compile "com.google.android.gms:play-services-drive:$firebaseVersion"
 
   compile 'com.firebaseui:firebase-ui-database:1.2.0'
 
