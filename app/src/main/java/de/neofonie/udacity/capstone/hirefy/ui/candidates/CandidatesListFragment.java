@@ -89,6 +89,16 @@ public class CandidatesListFragment extends BaseFragment {
   }
 
   public void setSelectedCandidate(FbCandidate candidate, int index) {
-    mAdapter.setSelectedPosition(index);
+    if (index < 0) {
+      int size = mAdapter.getItemCount();
+      for (int i = 0; i < size; i++) {
+        if (candidate.getUuid().equals(mAdapter.getItem(i).getUuid())) {
+          mAdapter.setSelectedPosition(i);
+          return;
+        }
+      }
+    } else {
+      mAdapter.setSelectedPosition(index);
+    }
   }
 }

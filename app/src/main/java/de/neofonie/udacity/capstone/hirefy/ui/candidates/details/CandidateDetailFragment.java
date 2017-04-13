@@ -71,13 +71,13 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
   @Override
   public void onStart() {
     super.onStart();
-    mRef.addValueEventListener(this);
+    if (mRef != null) mRef.addValueEventListener(this);
   }
 
   @Override
   public void onStop() {
     super.onStop();
-    mRef.removeEventListener(this);
+    if (mRef != null) mRef.removeEventListener(this);
   }
 
   private void initViews() {

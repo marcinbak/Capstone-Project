@@ -1,5 +1,7 @@
 package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 
+import com.google.firebase.database.Exclude;
+import de.neofonie.udacity.capstone.hirefy.utils.DateUtils;
 import org.parceler.Parcel;
 
 /**
@@ -12,8 +14,8 @@ public class FbCandidate {
   String firstName;
   String lastName;
   String position;
-  String createTime; // ServerValue.TIMESTAMP
-
+  Long dateUnix;
+  String createDate;
   //String linkedInProfile;
 
   public String getUuid() {
@@ -34,5 +36,13 @@ public class FbCandidate {
 
   public void setKey(String key) {
     this.key = key;
+  }
+
+  @Exclude
+  public String getCreateDate() {
+    if (createDate == null) {
+      createDate = DateUtils.format((long) dateUnix);
+    }
+    return createDate;
   }
 }

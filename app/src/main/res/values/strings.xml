@@ -16,4 +16,5 @@
   <string name="lastname_hint">Last name</string>
   <string name="position_hint">Position</string>
   <string name="submit_label">Submit</string>
+  <string name="candidate_save_failed_msg">Failed to save candidate.</string>
 </resources>

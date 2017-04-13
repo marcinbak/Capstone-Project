@@ -1,6 +1,7 @@
 package de.neofonie.udacity.capstone.hirefy.modules.candidates;
 
 import com.google.firebase.database.DataSnapshot;
+import de.neofonie.udacity.capstone.hirefy.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +16,7 @@ public class CandidateDetails {
   String          firstName;
   String          lastName;
   String          position;
-  String          createTime; // ServerValue.TIMESTAMP
+  String          createTime;
   List<Comment>   comments;
   List<Interview> interviews;
   //String linkedInProfile;
@@ -53,6 +54,9 @@ public class CandidateDetails {
             interview.key = ss.getKey();
             interviews.add(interview);
           }
+          break;
+        case "dateUnix":
+          createTime = DateUtils.format(s.getValue(Long.class));
           break;
       }
     }

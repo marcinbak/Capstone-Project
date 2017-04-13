@@ -24,6 +24,7 @@
         android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
         android:hint="@string/firstname_hint"
+        android:inputType="textCapWords"
         tools:text="George"/>
   </android.support.design.widget.TextInputLayout>
 
@@ -39,6 +40,7 @@
         android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
         android:hint="@string/lastname_hint"
+        android:inputType="textCapWords"
         tools:text="Michael"/>
   </android.support.design.widget.TextInputLayout>
 
@@ -53,6 +55,7 @@
         android:layout_width="@dimen/edittext_width"
         android:layout_height="wrap_content"
         android:hint="@string/position_hint"
+        android:inputType="textCapWords"
         tools:text="Web Developer"/>
   </android.support.design.widget.TextInputLayout>
 

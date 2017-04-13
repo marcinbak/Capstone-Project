@@ -4,6 +4,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import de.neofonie.udacity.capstone.hirefy.dagger.scope.ApplicationScope;
+import de.neofonie.udacity.capstone.hirefy.utils.FirebaseUtils;
+import io.reactivex.Single;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
 
 import javax.inject.Inject;
 import java.util.HashMap;
@@ -33,14 +37,24 @@ public class CandidatesManager {
     return mDb.getReference(CANDIDATE_DETAILS_REF + "/" + candidate.getUuid());
   }
 
-  public void createCandidate(CandidateCreate create) {
-    String key = mDb.getReference(CANDIDATES_REF).push().getKey();
+  public Single<FbCandidate> createCandidate(CandidateCreate create) {
+    final String key = mDb.getReference(CANDIDATES_REF).push().getKey();
 
-    Map<String, Object> map = new HashMap<>(2);
+    final Map<String, Object> map = new HashMap<>(2);
     map.put(CANDIDATES_REF + "/" + key, create);
     map.put(CANDIDATE_DETAILS_REF + "/" + key, create);
 
-    mDb.getReference().updateChildren(map);
+    DatabaseReference ref = mDb.getReference(CANDIDATES_REF + "/" + key);
+
+    return FirebaseUtils.updateToCompletable(mDb.getReference().updateChildren(map))
+        .andThen(FirebaseUtils.singleFrom(ref, FbCandidate.class))
+        .map(new Function<FbCandidate, FbCandidate>() {
+          @Override
+          public FbCandidate apply(@NonNull FbCandidate fbCandidate) throws Exception {
+            fbCandidate.setKey(key);
+            return fbCandidate;
+          }
+        });
   }
 
   public void sendComment(String uuid, String comment) {
