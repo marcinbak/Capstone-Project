@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/root_view"
+            android:clickable="true"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:alignmentMode="alignBounds"
+            android:padding="@dimen/universal_padding"
+            android:rowOrderPreserved="true"
+            android:useDefaultMargins="true">
+
+  <android.support.design.widget.TextInputLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="2"
+      android:layout_columnSpan="2"
+      android:layout_row="0"
+      android:layout_gravity="fill_horizontal">
+
+    <EditText
+        android:id="@+id/type_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/interview_type_label"
+        android:inputType="textCapSentences"
+        tools:text="First interview"/>
+  </android.support.design.widget.TextInputLayout>
+
+  <Button
+      android:id="@+id/date_btn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:layout_gravity="fill_horizontal"
+      android:layout_column="0"
+      android:layout_row="1"
+      android:text="@string/date_label"/>
+
+  <Button
+      android:id="@+id/time_btn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:layout_gravity="fill_horizontal"
+      android:layout_column="1"
+      android:layout_row="1"
+      android:text="@string/time_label"/>
+
+  <Button
+      android:id="@+id/confirm_btn"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_columnWeight="1"
+      android:layout_gravity="fill_horizontal"
+      android:layout_column="1"
+      android:layout_row="2"
+      android:text="@string/submit_label"/>
+
+</GridLayout>

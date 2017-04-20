@@ -10,6 +10,7 @@ import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.Interview;
 import de.neofonie.udacity.capstone.hirefy.ui.widgets.ViewHolder;
 import de.neofonie.udacity.capstone.hirefy.ui.widgets.ViewHolderFactory;
+import de.neofonie.udacity.capstone.hirefy.utils.DateUtils;
 
 /**
  * Created by marcinbak on 11.04.17.
@@ -32,7 +33,6 @@ public class InterviewViewHolder extends ViewHolder<Interview> {
   @BindView(R.id.title_tv)        TextView mTitleTv;
   @BindView(R.id.planned_date_tv) TextView mPlannedDateTv;
 
-
   private InterviewViewHolder(View itemView) {
     super(itemView);
     ButterKnife.bind(this, itemView);
@@ -40,7 +40,7 @@ public class InterviewViewHolder extends ViewHolder<Interview> {
 
   @Override
   public void bind(Interview model) {
-    mTitleTv.setText(model.getTitle());
-    mPlannedDateTv.setText(model.getPlannedDate());
+    mTitleTv.setText(model.getType());
+    mPlannedDateTv.setText(DateUtils.format(model.getTimestamp()));
   }
 }

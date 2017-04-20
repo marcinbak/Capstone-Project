@@ -67,4 +67,12 @@ public class CandidatesManager {
     String key = ref.push().getKey();
     ref.child(key).setValue(commentObj);
   }
+
+  public void createInterview(String candidateUuid, InterviewCreate interview) {
+    String refStr = CANDIDATE_DETAILS_REF + "/" + candidateUuid + "/interviews";
+
+    DatabaseReference ref = mDb.getReference(refStr);
+    String key = ref.push().getKey();
+    ref.child(key).setValue(interview);
+  }
 }

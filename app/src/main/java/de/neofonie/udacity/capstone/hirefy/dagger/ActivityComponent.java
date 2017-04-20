@@ -9,6 +9,9 @@ import de.neofonie.udacity.capstone.hirefy.ui.candidates.CandidatesListFragment;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragment;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailsActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddCandidateFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.datetime.DatePickerDialogFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.datetime.TimePickerDialogFragment;
 
 /**
  * Created by marcinbak on 03/04/2017.
@@ -34,4 +37,10 @@ public interface ActivityComponent {
   void inject(CandidateDetailsActivity candidateDetailsActivity);
 
   void inject(AddCandidateFragment addCandidateFragment);
+
+  void inject(AddInterviewFragment addInterviewFragment);
+
+  void inject(DatePickerDialogFragment datePickerDialogFragment);
+
+  void inject(TimePickerDialogFragment timePickerDialogFragment);
 }

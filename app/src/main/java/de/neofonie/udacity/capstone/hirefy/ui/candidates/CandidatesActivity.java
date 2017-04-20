@@ -22,6 +22,8 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.PlayServicesProvider;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.*;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragmentBuilder;
 
 import javax.inject.Inject;
 
@@ -144,6 +146,8 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
 
   @Override
   public void startInterviewCreation(String candidateUuid) {
-    // TODO implement
+    AddInterviewFragment f = new AddInterviewFragmentBuilder(candidateUuid).build();
+    String tag = AddInterviewFragment.TAG;
+    f.show(getSupportFragmentManager(), tag);
   }
 }

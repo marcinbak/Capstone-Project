@@ -11,6 +11,8 @@ import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragment;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragmentBuilder;
 import org.parceler.Parcels;
 
 import javax.inject.Inject;
@@ -57,6 +59,13 @@ public class CandidateDetailsActivity extends BaseActivity implements CommentSen
 
   @Override
   public void startInterviewCreation(String candidateUuid) {
-    // TODO implement
+    AddInterviewFragment f = new AddInterviewFragmentBuilder(candidateUuid).build();
+    String tag = AddInterviewFragment.TAG;
+    getSupportFragmentManager()
+        .beginTransaction()
+        .setCustomAnimations(R.anim.right_in, R.anim.right_out, R.anim.right_in, R.anim.right_out)
+        .add(R.id.container, f, tag)
+        .addToBackStack(tag)
+        .commit();
   }
 }
