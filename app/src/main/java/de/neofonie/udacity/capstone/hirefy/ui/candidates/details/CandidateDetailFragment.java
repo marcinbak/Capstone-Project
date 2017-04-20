@@ -110,7 +110,7 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
     data.add(details);
 
-    data.add(new InterviewsHeader());
+    data.add(new InterviewsHeader(details));
     if (details.hasInterviews()) {
       data.addAll(details.getInterviews());
     } else {
