@@ -10,5 +10,6 @@
   <dimen name="universal_padding">8dp</dimen>
   <dimen name="universal_padding_small">4dp</dimen>
   <dimen name="edittext_width">200dp</dimen>
+  <dimen name="universal_padding_large">16dp</dimen>
 
 </resources>

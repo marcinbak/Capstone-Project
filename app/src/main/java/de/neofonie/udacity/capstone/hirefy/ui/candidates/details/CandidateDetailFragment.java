@@ -82,6 +82,8 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
   private void initViews() {
     mAdapter = new CustomRecyclerAdapter.Builder()
+        .registerFactory(new InterviewHeaderViewHolder.Factory())
+        .registerFactory(new SimpleTextViewHolder.Factory())
         .registerFactory(new LabelViewHolder.Factory())
         .registerFactory(new CandidateDetailsViewHolder.Factory())
         .registerFactory(new InterviewViewHolder.Factory())
@@ -108,9 +110,11 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
     data.add(details);
 
+    data.add(new InterviewsHeader());
     if (details.hasInterviews()) {
-      data.add(getString(R.string.interviews_label));
       data.addAll(details.getInterviews());
+    } else {
+      data.add(new SimpleText(R.string.no_interviews));
     }
 
     data.add(getString(R.string.comments_label));

@@ -17,4 +17,6 @@
   <string name="position_hint">Position</string>
   <string name="submit_label">Submit</string>
   <string name="candidate_save_failed_msg">Failed to save candidate.</string>
+  <string name="add_interview_hint">Add interview</string>
+  <string name="no_interviews">No planned interviews</string>
 </resources>
