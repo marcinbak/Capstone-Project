@@ -18,7 +18,7 @@ import javax.inject.Inject;
 /**
  * Created by marcinbak on 06/04/2017.
  */
-public class CandidateDetailsActivity extends BaseActivity implements CommentSender {
+public class CandidateDetailsActivity extends BaseActivity implements CommentSender, InterviewCreator {
 
   private final static String CANDIDATE_EXTRA = "CANDIDATE_EXTRA";
 
@@ -53,5 +53,10 @@ public class CandidateDetailsActivity extends BaseActivity implements CommentSen
   @Override
   public void sendComment(String uuid, String comment) {
     mCandidatesManager.sendComment(uuid, comment);
+  }
+
+  @Override
+  public void startInterviewCreation(String candidateUuid) {
+    // TODO implement
   }
 }

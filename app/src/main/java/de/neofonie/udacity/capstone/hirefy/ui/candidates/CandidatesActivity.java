@@ -21,10 +21,7 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.PlayServicesProvider;
-import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragment;
-import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailFragmentBuilder;
-import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CandidateDetailsActivity;
-import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.CommentSender;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.*;
 
 import javax.inject.Inject;
 
@@ -32,7 +29,7 @@ import javax.inject.Inject;
  * Created by marcinbak on 03/04/2017.
  */
 public class CandidatesActivity extends BaseActivity implements CandidateSelectedListener, CommentSender,
-    GoogleApiClient.OnConnectionFailedListener, PlayServicesProvider {
+    GoogleApiClient.OnConnectionFailedListener, PlayServicesProvider, InterviewCreator {
 
   public static void start(Activity context) {
     Intent i = new Intent(context, CandidatesActivity.class);
@@ -143,5 +140,10 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
 
   public GoogleApiClient getGoogleApiClient() {
     return mGoogleApiClient;
+  }
+
+  @Override
+  public void startInterviewCreation(String candidateUuid) {
+    // TODO implement
   }
 }

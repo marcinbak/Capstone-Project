@@ -1,5 +1,6 @@
 package de.neofonie.udacity.capstone.hirefy.ui.candidates.details;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import de.neofonie.udacity.capstone.hirefy.ui.widgets.ViewHolderFactory;
  */
 
 public class InterviewHeaderViewHolder extends ViewHolder<InterviewsHeader> {
+
+  private InterviewsHeader mModel;
 
   public static class Factory extends ViewHolderFactory<InterviewsHeader> {
 
@@ -35,10 +38,15 @@ public class InterviewHeaderViewHolder extends ViewHolder<InterviewsHeader> {
 
   @Override
   public void bind(InterviewsHeader model) {
+    mModel = model;
   }
 
   @OnClick(R.id.add_btn)
   void addInterviewClicked() {
     // TODO start adding interview
+    Context c = getContext();
+    if (c instanceof InterviewCreator) {
+      ((InterviewCreator) c).startInterviewCreation(mModel.getCandidate().getUuid());
+    }
   }
 }
