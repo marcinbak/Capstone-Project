@@ -22,4 +22,5 @@
   <string name="interview_type_label">Description</string>
   <string name="date_label">Choose date</string>
   <string name="time_label">Choose time</string>
+  <string name="add_to_calendar_hint">Add to calendar</string>
 </resources>

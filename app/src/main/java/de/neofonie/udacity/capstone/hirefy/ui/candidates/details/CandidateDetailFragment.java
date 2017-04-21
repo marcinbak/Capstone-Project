@@ -24,6 +24,7 @@ import de.neofonie.udacity.capstone.hirefy.dagger.ActivityComponent;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidateDetails;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
+import de.neofonie.udacity.capstone.hirefy.modules.candidates.Interview;
 import de.neofonie.udacity.capstone.hirefy.ui.widgets.CustomRecyclerAdapter;
 
 import javax.inject.Inject;
@@ -112,7 +113,9 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
     data.add(new InterviewsHeader(details));
     if (details.hasInterviews()) {
-      data.addAll(details.getInterviews());
+      for (Interview interview : details.getInterviews()) {
+        data.add(new InterviewViewModel(details, interview));
+      }
     } else {
       data.add(new SimpleText(R.string.no_interviews));
     }

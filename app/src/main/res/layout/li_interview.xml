@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:paddingTop="@dimen/universal_padding_small">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/universal_padding_small">
 
   <TextView
       android:id="@+id/title_tv"
@@ -19,12 +18,22 @@
       android:layout_height="wrap_content"
       android:paddingTop="@dimen/universal_padding_small"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+      android:layout_below="@+id/title_tv"
       tools:text="20/03/2015 12:00"/>
 
   <View
       android:layout_width="match_parent"
       android:layout_height="1dp"
       android:layout_marginTop="@dimen/universal_padding_small"
+      android:layout_below="@+id/planned_date_tv"
       android:background="@drawable/divider"/>
 
-</LinearLayout>
+  <ImageButton
+      android:id="@+id/add_to_calendar_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:src="@drawable/ic_calendar"
+      android:contentDescription="@string/add_to_calendar_hint"/>
+
+</RelativeLayout>

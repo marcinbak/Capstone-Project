@@ -43,7 +43,6 @@ public class InterviewHeaderViewHolder extends ViewHolder<InterviewsHeader> {
 
   @OnClick(R.id.add_btn)
   void addInterviewClicked() {
-    // TODO start adding interview
     Context c = getContext();
     if (c instanceof InterviewCreator) {
       ((InterviewCreator) c).startInterviewCreation(mModel.getCandidate().getUuid());
