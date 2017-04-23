@@ -1,10 +1,13 @@
 package de.neofonie.udacity.capstone.hirefy.ui.candidates;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,8 +20,11 @@ import com.google.android.gms.drive.Drive;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
+import de.neofonie.udacity.capstone.hirefy.modules.calendar.CalendarManager;
+import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidateDetails;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
+import de.neofonie.udacity.capstone.hirefy.modules.candidates.Interview;
 import de.neofonie.udacity.capstone.hirefy.ui.LoginActivity;
 import de.neofonie.udacity.capstone.hirefy.ui.PlayServicesProvider;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.details.*;
@@ -26,17 +32,20 @@ import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragme
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragmentBuilder;
 
 import javax.inject.Inject;
+import java.util.Objects;
 
 /**
  * Created by marcinbak on 03/04/2017.
  */
 public class CandidatesActivity extends BaseActivity implements CandidateSelectedListener, CommentSender,
-    GoogleApiClient.OnConnectionFailedListener, PlayServicesProvider, InterviewCreator {
+    GoogleApiClient.OnConnectionFailedListener, PlayServicesProvider, InterviewCreator, CalendarEventCreator {
 
   public static void start(Activity context) {
     Intent i = new Intent(context, CandidatesActivity.class);
     context.startActivity(i);
   }
+
+  private final static int PERMISSIONS_REQ = 3731;
 
   @BindView(R.id.candidates_frag) View mCandidatesListFragment;
 
@@ -46,6 +55,7 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
 
   @Inject AuthManager       mAuthManager;
   @Inject CandidatesManager mCandidatesManager;
+  @Inject CalendarManager   mCalendarManager;
 
   private GoogleApiClient mGoogleApiClient;
   private boolean         isTablet;
@@ -149,5 +159,34 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
     AddInterviewFragment f = new AddInterviewFragmentBuilder(candidateUuid).build();
     String tag = AddInterviewFragment.TAG;
     f.show(getSupportFragmentManager(), tag);
+  }
+
+  @Override
+  public void createAndOpenEvent(CandidateDetails candidate, Interview interview) {
+    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+      ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR}, PERMISSIONS_REQ);
+      mPermissionInterview = interview;
+      mPermissionCandidate = candidate;
+    } else {
+      mCalendarManager.addEvent(this, interview, candidate);
+    }
+  }
+
+  private CandidateDetails mPermissionCandidate;
+  private Interview        mPermissionInterview;
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    if (requestCode == PERMISSIONS_REQ && mPermissionCandidate != null) {
+      for (int i = 0; i < permissions.length; i++) {
+        if (Objects.equals(permissions[i], Manifest.permission.WRITE_CALENDAR) && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+          mCalendarManager.addEvent(this, mPermissionInterview, mPermissionCandidate);
+          break;
+        }
+      }
+    }
+    mPermissionInterview = null;
+    mPermissionCandidate = null;
   }
 }

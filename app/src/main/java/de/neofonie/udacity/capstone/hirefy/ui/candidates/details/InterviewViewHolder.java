@@ -1,6 +1,5 @@
 package de.neofonie.udacity.capstone.hirefy.ui.candidates.details;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import butterknife.OnClick;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.ui.widgets.ViewHolder;
 import de.neofonie.udacity.capstone.hirefy.ui.widgets.ViewHolderFactory;
-import de.neofonie.udacity.capstone.hirefy.utils.CalendarUtils;
 import de.neofonie.udacity.capstone.hirefy.utils.DateUtils;
 
 /**
@@ -51,6 +49,10 @@ public class InterviewViewHolder extends ViewHolder<InterviewViewModel> {
 
   @OnClick(R.id.add_to_calendar_btn)
   void addToCalendar() {
-    CalendarUtils.addEvent((Activity) getContext(), mModel.getInterview(), mModel.getDetails());
+    if (getContext() instanceof CalendarEventCreator) {
+      ((CalendarEventCreator) getContext()).createAndOpenEvent(mModel.details, mModel.interview);
+    } else {
+      throw new IllegalStateException("Activity " + getContext().getClass().getSimpleName() + " must implement CalendarEventCreator interface");
+    }
   }
 }
