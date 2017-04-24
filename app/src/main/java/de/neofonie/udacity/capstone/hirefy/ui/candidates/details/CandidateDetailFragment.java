@@ -98,7 +98,9 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
   public void setCandidate(FbCandidate candidate) {
     mCandidate = candidate;
-    mRef.removeEventListener(this);
+    if (mRef != null) {
+      mRef.removeEventListener(this);
+    }
     mRef = mCandidatesManager.getCandidateDetails(mCandidate);
     mRef.addValueEventListener(this);
   }

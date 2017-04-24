@@ -27,4 +27,6 @@
   <string name="add_widget">Add widget</string>
   <string name="no_events_list">No incoming interviews</string>
   <string name="title_widget">Interviews</string>
+  <string name="create_candidate">New candidate</string>
+  <string name="add_interview">Plan interview</string>
 </resources>

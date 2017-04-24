@@ -1,6 +1,7 @@
 package de.neofonie.udacity.capstone.hirefy.ui.candidates.edit;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
@@ -71,11 +72,20 @@ public class AddCandidateFragment extends BaseDialogFragment implements LoaderMa
   public void onStart() {
     super.onStart();
     FragmentArgs.inject(this);
-//    Dialog dialog = getDialog();
-//    if (dialog != null) {
-//      dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//      dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-//    }
+
+    if (getDialog() != null) {
+      int dialogWidth = 900;
+      int dialogHeight = 900;
+      getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+      getDialog().setTitle(getString(R.string.create_candidate));
+    }
+
+  }
+
+  @Override
+  public Dialog onCreateDialog(Bundle savedInstanceState) {
+    Dialog dialog = super.onCreateDialog(savedInstanceState);
+    return dialog;
   }
 
   @Nullable
@@ -120,7 +130,13 @@ public class AddCandidateFragment extends BaseDialogFragment implements LoaderMa
     if (activity instanceof CandidateSelectedListener) {
       ((CandidateSelectedListener) activity).onCandidateSelected(fbCandidate, -1);
     }
-    activity.onBackPressed();
+    if (getDialog() != null) {
+      dismiss();
+    } else {
+      if (activity != null) {
+        activity.onBackPressed();
+      }
+    }
   }
 
   @OnClick(R.id.resume_btn)

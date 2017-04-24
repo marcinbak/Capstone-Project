@@ -83,6 +83,13 @@ public class AddInterviewFragment extends BaseDialogFragment {
     super.onStart();
     FragmentArgs.inject(this);
 
+    if (getDialog() != null) {
+      int dialogWidth = 900;
+      int dialogHeight = 900;
+      getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+      getDialog().setTitle(getString(R.string.add_interview));
+    }
+
     mEventBus
         .observe(DateEvent.class)
         .subscribe(new Consumer<DateEvent>() {
@@ -155,9 +162,13 @@ public class AddInterviewFragment extends BaseDialogFragment {
   }
 
   private void closeFragment() {
-    Activity activity = getActivity();
-    if (activity != null) {
-      activity.onBackPressed();
+    if (getDialog() != null) {
+      dismiss();
+    } else {
+      Activity activity = getActivity();
+      if (activity != null) {
+        activity.onBackPressed();
+      }
     }
   }
 
