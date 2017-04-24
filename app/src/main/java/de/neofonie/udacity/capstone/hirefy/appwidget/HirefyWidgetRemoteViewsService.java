@@ -36,6 +36,8 @@ import de.neofonie.udacity.capstone.hirefy.R;
  */
 public class HirefyWidgetRemoteViewsService extends RemoteViewsService {
 
+  public static final String EVENT_ID_EXTRA = "EVENT_ID_EXTRA";
+
   private static final long ONE_MIN  = 1000 * 60;
   private static final long ONE_HOUR = 1000 * 60 * 60;
   private static final long ONE_DAY  = 1000 * 60 * 60 * 24;
@@ -117,6 +119,7 @@ public class HirefyWidgetRemoteViewsService extends RemoteViewsService {
         RemoteViews views = new RemoteViews(getPackageName(), R.layout.widget_detail_list_item);
         String title = data.getString(INDEX_TITLE);
         long startDate = data.getLong(INDEX_START);
+        long eventID = data.getLong(INDEX_ID);
         long timeLeft = startDate - System.currentTimeMillis();
 
         String leftStr;
@@ -140,9 +143,10 @@ public class HirefyWidgetRemoteViewsService extends RemoteViewsService {
         views.setTextViewText(R.id.event_title_tv, title);
         views.setTextViewText(R.id.time_left_tv, leftStr);
 
-//        final Intent fillInIntent = new Intent();
-//        fillInIntent.putExtra(STOCK_CODE_EXTRA, symbol);
-//        views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
+        Intent intent = new Intent();
+        intent.putExtra(EVENT_ID_EXTRA, eventID);
+
+        views.setOnClickFillInIntent(R.id.widget_list_item, intent);
         return views;
       }
 

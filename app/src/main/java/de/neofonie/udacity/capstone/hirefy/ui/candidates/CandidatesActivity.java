@@ -2,9 +2,12 @@ package de.neofonie.udacity.capstone.hirefy.ui.candidates;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -18,6 +21,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
 import de.neofonie.udacity.capstone.hirefy.R;
+import de.neofonie.udacity.capstone.hirefy.appwidget.HirefyWidgetRemoteViewsService;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
 import de.neofonie.udacity.capstone.hirefy.modules.calendar.CalendarManager;
@@ -82,6 +86,20 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
       getSupportFragmentManager().beginTransaction()
           .add(detailsContainerId, new CandidateDetailFragmentBuilder().build())
           .commit();
+    }
+    checkIntentForEventId(getIntent());
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    checkIntentForEventId(intent);
+  }
+
+  private void checkIntentForEventId(Intent intent) {
+    if (intent.hasExtra(HirefyWidgetRemoteViewsService.EVENT_ID_EXTRA)) {
+      Uri uri = ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, intent.getLongExtra(HirefyWidgetRemoteViewsService.EVENT_ID_EXTRA, -1));
+      startActivity(new Intent(Intent.ACTION_VIEW).setData(uri));
     }
   }
 
