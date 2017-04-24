@@ -23,4 +23,8 @@
   <string name="date_label">Choose date</string>
   <string name="time_label">Choose time</string>
   <string name="add_to_calendar_hint">Add to calendar</string>
+  <string name="configure">Configure</string>
+  <string name="add_widget">Add widget</string>
+  <string name="no_events_list">No incoming interviews</string>
+  <string name="title_widget">Interviews</string>
 </resources>

@@ -28,6 +28,27 @@
     <activity
         android:name=".ui.candidates.details.CandidateDetailsActivity"
         android:parentActivityName=".ui.candidates.CandidatesActivity"/>
+
+    <receiver
+        android:name=".appwidget.HirefyWidget"
+        android:label="@string/title_widget">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+        <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED"/>
+      </intent-filter>
+
+      <meta-data
+          android:name="android.appwidget.provider"
+          android:resource="@xml/widget_info"/>
+    </receiver>
+
+    <service
+        android:name=".appwidget.HirefyWidgetRemoteViewsService"
+        android:exported="false"
+        android:enabled="true"
+        android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+    <service android:name=".appwidget.EventsObserverService"/>
   </application>
 
 </manifest>

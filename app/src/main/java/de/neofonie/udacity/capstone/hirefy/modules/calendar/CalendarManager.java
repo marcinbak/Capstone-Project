@@ -95,13 +95,14 @@ public class CalendarManager {
   public Long getPrimaryCalendarId() {
     final int PROJECTION_ID_INDEX = 0;
 
-    String projection[] = {
+    final String projection[] = {
         CalendarContract.Calendars._ID,
     };
 
-    String value[] = {
+    final String value[] = {
         "1",
     };
+
     ContentResolver contentResolver = mContext.getContentResolver();
     Uri uri = CalendarContract.Calendars.CONTENT_URI;
 

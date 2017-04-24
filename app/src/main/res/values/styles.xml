@@ -19,4 +19,15 @@
     <item name="android:background">@drawable/button_background</item>
   </style>
 
+
+  <style name="EventTitleTextStyle">
+    <item name="android:textSize">20sp</item>
+  </style>
+
+  <style name="TimeLeftTextStyle">
+    <item name="android:textSize">25sp</item>
+    <item name="android:textAllCaps">true</item>
+  </style>
+
+
 </resources>
