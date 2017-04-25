@@ -30,6 +30,8 @@ import javax.inject.Inject;
 @FragmentWithArgs
 public class CandidatesListFragment extends BaseFragment {
 
+  private static final String SELECTION_POSITION = "SELECTION_POSITION";
+
   @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
 
   @Inject CandidatesManager mCandidatesManager;
@@ -60,6 +62,9 @@ public class CandidatesListFragment extends BaseFragment {
 
     mAdapter = new CandidatesAdapter(R.layout.candidate_li, mCandidatesManager.getCandidatesList());
     mAdapter.setTablet(isTablet);
+    if (isTablet && savedInstanceState != null && savedInstanceState.containsKey(SELECTION_POSITION)) {
+      mAdapter.setSelectedPosition(savedInstanceState.getInt(SELECTION_POSITION));
+    }
     mRecyclerView.setLayoutManager(layoutManager);
     mRecyclerView.setAdapter(mAdapter);
 
@@ -93,12 +98,18 @@ public class CandidatesListFragment extends BaseFragment {
       int size = mAdapter.getItemCount();
       for (int i = 0; i < size; i++) {
         if (candidate.getUuid().equals(mAdapter.getItem(i).getUuid())) {
-          mAdapter.setSelectedPosition(i);
+          mAdapter.selectPosition(i);
           return;
         }
       }
     } else {
-      mAdapter.setSelectedPosition(index);
+      mAdapter.selectPosition(index);
     }
+  }
+
+  @Override
+  public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt(SELECTION_POSITION, mAdapter.getSelectedPosition());
   }
 }

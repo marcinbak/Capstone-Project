@@ -10,8 +10,9 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
  */
 public class CandidatesAdapter extends FirebaseRecyclerAdapter<FbCandidate, FbCandidateVH> {
 
-  private boolean isTablet         = false;
-  private int     selectedPosition = 0;
+  private boolean isTablet           = false;
+  private int     selectedPosition   = 0;
+  private boolean firstSelectionDone = false;
 
   /**
    * @param modelLayout This is the layout used to represent a single item in the list.
@@ -34,18 +35,30 @@ public class CandidatesAdapter extends FirebaseRecyclerAdapter<FbCandidate, FbCa
   @Override
   protected void populateViewHolder(FbCandidateVH viewHolder, FbCandidate model, int position) {
     viewHolder.setModel(model, !isTablet && position == 0, isTablet && position == selectedPosition);
+    if (isTablet && !firstSelectionDone && position == selectedPosition) {
+      firstSelectionDone = true;
+      viewHolder.onItemClicked();
+    }
   }
 
   public void setTablet(boolean tablet) {
     isTablet = tablet;
   }
 
-  public void setSelectedPosition(int selectedPosition) {
-    if (isTablet) {
+  public void selectPosition(int selectedPosition) {
+    if (isTablet && selectedPosition != this.selectedPosition) {
       int oldSelectedPosition = this.selectedPosition;
       this.selectedPosition = selectedPosition;
       notifyItemChanged(oldSelectedPosition);
       notifyItemChanged(this.selectedPosition);
     }
+  }
+
+  public void setSelectedPosition(int selectedPosition) {
+    this.selectedPosition = selectedPosition;
+  }
+
+  public int getSelectedPosition() {
+    return selectedPosition;
   }
 }
