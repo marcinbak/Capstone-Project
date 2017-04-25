@@ -17,10 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import de.neofonie.udacity.capstone.hirefy.R;
 import de.neofonie.udacity.capstone.hirefy.base.BaseActivity;
 import de.neofonie.udacity.capstone.hirefy.modules.auth.AuthManager;
@@ -65,36 +61,12 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
   @Override
   protected void onStart() {
     super.onStart();
-    FirebaseDatabase.getInstance().getReference().child("test").addChildEventListener(new ChildEventListener() {
-      @Override
-      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-      }
-
-      @Override
-      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-      }
-
-      @Override
-      public void onChildRemoved(DataSnapshot dataSnapshot) {
-      }
-
-      @Override
-      public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-      }
-
-      @Override
-      public void onCancelled(DatabaseError databaseError) {
-      }
-    });
     mAuthStateDisposable = mAuthManager.getAuthStateChangeObservable().subscribe(new Consumer<FirebaseAuth>() {
       @Override
       public void accept(@io.reactivex.annotations.NonNull FirebaseAuth firebaseAuth) throws Exception {
         if (mAuthManager.isUserLoggedIn()) {
           Toast.makeText(LoginActivity.this, R.string.login_success_msg, Toast.LENGTH_SHORT).show();
-//          loadingLayout.isLoadingVisible = false
           CandidatesActivity.start(LoginActivity.this);
-        } else {
-//          loadingLayout.isLoadingVisible = false
         }
       }
     }, new Consumer<Throwable>() {
@@ -105,7 +77,6 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
         final String msg = getString(R.string.exception_msg, throwable.getMessage());
 
         Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-//        loadingLayout.isLoadingVisible = false
       }
     });
   }
