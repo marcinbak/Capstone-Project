@@ -21,11 +21,11 @@
 
 
   <style name="EventTitleTextStyle">
-    <item name="android:textSize">20sp</item>
+    <item name="android:textSize">17sp</item>
   </style>
 
   <style name="TimeLeftTextStyle">
-    <item name="android:textSize">25sp</item>
+    <item name="android:textSize">21sp</item>
     <item name="android:textAllCaps">true</item>
   </style>
 
