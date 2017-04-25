@@ -45,6 +45,7 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
   @Inject CandidatesManager mCandidatesManager;
 
   @Arg(required = false, bundler = ParcelerArgsBundler.class) FbCandidate mCandidate;
+  @Arg                                                        String      mSavedComment;
 
   @Override
   protected void inject(ActivityComponent component) {
@@ -127,7 +128,7 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
       data.addAll(details.getComments());
     }
 
-    data.add(new AddComment(details));
+    data.add(new AddComment(details, mSavedComment));
 
     mAdapter.setData(data);
   }
@@ -135,5 +136,9 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
   @Override
   public void onCancelled(DatabaseError databaseError) {
     Toast.makeText(getContext(), R.string.candidate_load_error_msg, Toast.LENGTH_SHORT).show();
+  }
+
+  public void setSavedComment(String comment) {
+    mSavedComment = comment;
   }
 }

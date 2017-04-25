@@ -57,9 +57,10 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
   @BindView(R.id.candidate_details_frag)
   View mCandidateDetailsContainer;
 
-  @Inject AuthManager       mAuthManager;
-  @Inject CandidatesManager mCandidatesManager;
-  @Inject CalendarManager   mCalendarManager;
+  @Inject AuthManager         mAuthManager;
+  @Inject CandidatesManager   mCandidatesManager;
+  @Inject CalendarManager     mCalendarManager;
+  @Inject CommentExtraHandler mCommentExtraHandler;
 
   private GoogleApiClient mGoogleApiClient;
   private boolean         isTablet;
@@ -73,6 +74,7 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
     isTablet = mCandidateDetailsContainer != null;
 
     initPlayServices();
+    mCommentExtraHandler.checkExtras(savedInstanceState);
 
     int listContainerId = R.id.candidates_frag;
     if (getSupportFragmentManager().findFragmentById(listContainerId) == null) {
@@ -84,10 +86,16 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
     int detailsContainerId = R.id.candidate_details_frag;
     if (isTablet && getSupportFragmentManager().findFragmentById(detailsContainerId) == null) {
       getSupportFragmentManager().beginTransaction()
-          .add(detailsContainerId, new CandidateDetailFragmentBuilder().build())
+          .add(detailsContainerId, new CandidateDetailFragmentBuilder(mCommentExtraHandler.getCurrentText()).build())
           .commit();
     }
     checkIntentForEventId(getIntent());
+  }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    mCommentExtraHandler.saveToExtras(outState);
   }
 
   @Override
@@ -160,7 +168,13 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
 
   @Override
   public void sendComment(String uuid, String comment) {
+    mCommentExtraHandler.clearCurrentComment();
     mCandidatesManager.sendComment(uuid, comment);
+  }
+
+  @Override
+  public void updateComment(String newText) {
+    mCommentExtraHandler.updateCurrentText(newText);
   }
 
   @Override

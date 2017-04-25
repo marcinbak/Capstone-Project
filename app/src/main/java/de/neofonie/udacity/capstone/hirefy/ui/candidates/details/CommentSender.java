@@ -8,4 +8,5 @@ public interface CommentSender {
 
   void sendComment(String uuid, String comment);
 
+  void updateComment(String newText);
 }

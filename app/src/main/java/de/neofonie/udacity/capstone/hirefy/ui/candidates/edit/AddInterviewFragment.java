@@ -53,7 +53,7 @@ public class AddInterviewFragment extends BaseDialogFragment {
   @BindView(R.id.type_tv)     EditText mTypeEdit;
   @BindView(R.id.date_btn)    Button   mDateBtn;
   @BindView(R.id.time_btn)    Button   mTimeBtn;
-  @BindView(R.id.confirm_btn) Button   mConfiBtn;
+  @BindView(R.id.confirm_btn) Button   mConfirmBtn;
 
   @Arg String candidateUuid;
 

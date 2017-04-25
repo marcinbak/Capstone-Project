@@ -18,6 +18,7 @@ import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidateDetails;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.CandidatesManager;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.FbCandidate;
 import de.neofonie.udacity.capstone.hirefy.modules.candidates.Interview;
+import de.neofonie.udacity.capstone.hirefy.ui.candidates.CommentExtraHandler;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragment;
 import de.neofonie.udacity.capstone.hirefy.ui.candidates.edit.AddInterviewFragmentBuilder;
 import org.parceler.Parcels;
@@ -41,8 +42,9 @@ public class CandidateDetailsActivity extends BaseActivity implements CommentSen
 
   @BindView(R.id.container) View mContainer;
 
-  @Inject CandidatesManager mCandidatesManager;
-  @Inject CalendarManager   mCalendarManager;
+  @Inject CandidatesManager   mCandidatesManager;
+  @Inject CalendarManager     mCalendarManager;
+  @Inject CommentExtraHandler mCommentExtraHandler;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,20 +53,42 @@ public class CandidateDetailsActivity extends BaseActivity implements CommentSen
     getComponent().inject(this);
     ButterKnife.bind(this);
 
+    mCommentExtraHandler.checkExtras(savedInstanceState);
+
     FbCandidate candidate = Parcels.unwrap(getIntent().getParcelableExtra(CANDIDATE_EXTRA));
     setTitle(candidate.getFirstName() + " " + candidate.getLastName());
 
     int containerId = mContainer.getId();
-    if (containerId != 0 && getSupportFragmentManager().findFragmentById(containerId) == null) {
-      getSupportFragmentManager().beginTransaction()
-          .add(containerId, new CandidateDetailFragmentBuilder().candidate(candidate).build())
-          .commit();
+    if (containerId != 0) {
+      if (getSupportFragmentManager().findFragmentById(containerId) == null) {
+        getSupportFragmentManager().beginTransaction()
+            .add(containerId, new CandidateDetailFragmentBuilder(mCommentExtraHandler.getCurrentText()).candidate(candidate).build())
+            .commit();
+      } else {
+        ((CandidateDetailFragment) getSupportFragmentManager().findFragmentById(containerId)).setSavedComment(mCommentExtraHandler.getCurrentText());
+      }
     }
   }
 
   @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    mCommentExtraHandler.saveToExtras(outState);
+  }
+
+  @Override
   public void sendComment(String uuid, String comment) {
+    mCommentExtraHandler.clearCurrentComment();
+    if (getSupportFragmentManager().findFragmentById(mContainer.getId()) != null) {
+      ((CandidateDetailFragment) getSupportFragmentManager().findFragmentById(mContainer.getId())).setSavedComment(mCommentExtraHandler.getCurrentText());
+    }
+
     mCandidatesManager.sendComment(uuid, comment);
+  }
+
+  @Override
+  public void updateComment(String newText) {
+    mCommentExtraHandler.updateCurrentText(newText);
   }
 
   @Override

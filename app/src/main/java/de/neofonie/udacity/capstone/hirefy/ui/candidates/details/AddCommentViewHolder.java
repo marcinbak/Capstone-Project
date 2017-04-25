@@ -1,6 +1,8 @@
 package de.neofonie.udacity.capstone.hirefy.ui.candidates.details;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +21,7 @@ import de.neofonie.udacity.capstone.hirefy.utils.AndroidUtils;
 /**
  * Created by marcinbak on 11.04.17.
  */
-public class AddCommentViewHolder extends ViewHolder<AddComment> {
+public class AddCommentViewHolder extends ViewHolder<AddComment> implements TextWatcher {
 
   private AddComment mModel;
 
@@ -53,15 +55,19 @@ public class AddCommentViewHolder extends ViewHolder<AddComment> {
         return handled;
       }
     });
+
+    mEditText.addTextChangedListener(this);
   }
 
   @Override
   public void bind(AddComment model) {
     mModel = model;
+    mEditText.setText(mModel.getSavedComment());
   }
 
   @OnClick(R.id.send_btn)
   void send() {
+    mModel.clear();
     String comment = mEditText.getText().toString();
     Context c = getContext();
     if (c instanceof CommentSender) {
@@ -70,4 +76,25 @@ public class AddCommentViewHolder extends ViewHolder<AddComment> {
     mEditText.setText("");
     AndroidUtils.hideKeyboardFrom(getContext(), itemView);
   }
+
+  @Override
+  public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+  }
+
+  @Override
+  public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+  }
+
+  @Override
+  public void afterTextChanged(Editable s) {
+    String newText = s.toString();
+
+    Context c = getContext();
+    if (c instanceof CommentSender) {
+      ((CommentSender) c).updateComment(newText);
+    }
+  }
+
 }
