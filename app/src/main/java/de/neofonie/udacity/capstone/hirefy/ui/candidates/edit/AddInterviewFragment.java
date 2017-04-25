@@ -84,8 +84,8 @@ public class AddInterviewFragment extends BaseDialogFragment {
     FragmentArgs.inject(this);
 
     if (getDialog() != null) {
-      int dialogWidth = 900;
-      int dialogHeight = 900;
+      int dialogWidth = getResources().getDimensionPixelSize(R.dimen.dialog_size_width);
+      int dialogHeight = getResources().getDimensionPixelSize(R.dimen.dialog_size_height);
       getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
       getDialog().setTitle(getString(R.string.add_interview));
     }
