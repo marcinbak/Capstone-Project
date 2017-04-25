@@ -101,7 +101,10 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
       @Override
       public void accept(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
         Log.e(TAG, "Error in Firebase Auth state observable.", throwable);
-        Toast.makeText(LoginActivity.this, "Error:\n" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
+        final String msg = getString(R.string.exception_msg, throwable.getMessage());
+
+        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
 //        loadingLayout.isLoadingVisible = false
       }
     });
@@ -152,7 +155,7 @@ public class LoginActivity extends BaseActivity implements GoogleApiClient.OnCon
 
         firebaseAuthWithGoogle(account);
       } else {
-        Toast.makeText(this, result == null ? "Unknown error" : result.getStatus().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, result == null ? getString(R.string.unknown_error) : result.getStatus().toString(), Toast.LENGTH_SHORT).show();
 //        loadingLayout.isLoadingVisible = false;
       }
     }

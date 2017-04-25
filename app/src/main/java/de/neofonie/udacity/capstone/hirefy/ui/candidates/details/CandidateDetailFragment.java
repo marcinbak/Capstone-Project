@@ -134,6 +134,6 @@ public class CandidateDetailFragment extends BaseFragment implements ValueEventL
 
   @Override
   public void onCancelled(DatabaseError databaseError) {
-    Toast.makeText(getContext(), "Error during loading candidate information", Toast.LENGTH_SHORT).show();
+    Toast.makeText(getContext(), R.string.candidate_load_error_msg, Toast.LENGTH_SHORT).show();
   }
 }

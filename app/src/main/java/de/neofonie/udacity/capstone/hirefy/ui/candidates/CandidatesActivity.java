@@ -165,7 +165,7 @@ public class CandidatesActivity extends BaseActivity implements CandidateSelecte
 
   @Override
   public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    Toast.makeText(this, "Failed to connect to play services.", Toast.LENGTH_SHORT).show();
+    Toast.makeText(this, R.string.play_services_failed, Toast.LENGTH_SHORT).show();
   }
 
   public GoogleApiClient getGoogleApiClient() {
