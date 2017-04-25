@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "516065403207",
+    "firebase_url": "https://hirefy-eabda.firebaseio.com",
+    "project_id": "hirefy-eabda",
+    "storage_bucket": "hirefy-eabda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516065403207:android:f1362f5595d5df83",
+        "android_client_info": {
+          "package_name": "de.neofonie.udacity.capstone.hirefy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516065403207-dhj7uncbpfnu90lml4kn04uinsgpq2af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.neofonie.udacity.capstone.hirefy",
+            "certificate_hash": "7fe04e448f31ee3612f3f77500112bfd113bce9b"
+          }
+        },
+        {
+          "client_id": "516065403207-48gu6fi33a916hm74rmqvu35454teiv0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBidksuOnBF6LG06u8Hmq1qKdyZnwNygjw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516065403207-48gu6fi33a916hm74rmqvu35454teiv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
